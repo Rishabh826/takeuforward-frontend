@@ -15,23 +15,21 @@ const Banner = ({ description, timer, link }) => {
 
   if (timeLeft <= 0) return null;
 
+  const bannerStyle = {
+    backgroundColor: '#f8f9fa',
+    padding: '20px',
+    borderRadius: '8px',
+    display: 'inline-block',
+    textAlign: 'center',
+    margin: '20px auto',
+    width: '60%',
+  };
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div className="card bg-dark text-white" style={{ width: '40vw', height: '40vh' }}>
-        <img 
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzugyPJKNLr6Kp8qnvehHFOHG_mGKvkzqJg&s" 
-          className="card-img" 
-          alt="Banner" 
-          style={{ height: '100%', objectFit: 'cover' }}
-        />
-        <div className="card-img-overlay">
-          <a href={link} className="card-title" style={{ textDecoration: 'none', color: '#fff' }}>
-            Card Link
-          </a>
-          <p className="card-text">{description}</p>
-          <p className="card-text">Time Left: {timeLeft}s</p>
-        </div>
-      </div>
+    <div style={bannerStyle}>
+      <h3>{description}</h3>
+      <p>Time left: {timeLeft} seconds</p>
+      <a href={link} target="_blank" rel="noopener noreferrer">Visit Link</a>
     </div>
   );
 };

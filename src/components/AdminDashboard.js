@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "../index.css";
 
 const AdminDashboard = ({ setBannerData, fetchBannerData }) => {
   const [formData, setFormData] = useState({
@@ -19,47 +18,85 @@ const AdminDashboard = ({ setBannerData, fetchBannerData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await axios.post('https://take-backend-2.onrender.com/api/banner/add', formData);
-    setBannerData(result.data); // Update the state with the new banner data
-    fetchBannerData(); // Optionally refetch the data to ensure consistency
+    try {
+      const result = await axios.post('https://take-backend-2.onrender.com/api/banner/add', formData);
+      console.log('Banner added:', result.data);
+      setBannerData(result.data); // Update the state with the new banner data
+      fetchBannerData(); // Optionally refetch the data to ensure consistency
+    } catch (error) {
+      console.error('Error adding banner:', error);
+    }
+  };
+
+  const formStyle = {
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    maxWidth: '600px',
+    width: '100%',
+  };
+
+  const formGroupStyle = {
+    marginBottom: '15px',
+  };
+
+  const formLabelStyle = {
+    display: 'block',
+    marginBottom: '5px',
+  };
+
+  const formInputStyle = {
+    width: '100%',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+  };
+
+  const formButtonStyle = {
+    padding: '10px 20px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
   };
 
   return (
-    <form onSubmit={handleSubmit} >
-      <div>
-        <label>
-          Banner Description:
-          <input
-            type="text"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-          />
-        </label>
+    <form onSubmit={handleSubmit} style={formStyle}>
+      <div style={formGroupStyle}>
+        <label style={formLabelStyle}>Banner Description:</label>
+        <input
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleInputChange}
+          style={formInputStyle}
+        />
       </div>
-      <div>
-        <label>
-          Banner Timer (seconds):
-          <input
-            type="number"
-            name="timer"
-            value={formData.timer}
-            onChange={handleInputChange}
-          />
-        </label>
+      <div style={formGroupStyle}>
+        <label style={formLabelStyle}>Banner Timer (seconds):</label>
+        <input
+          type="number"
+          name="timer"
+          value={formData.timer}
+          onChange={handleInputChange}
+          style={formInputStyle}
+        />
       </div>
-      <div>
-        <label>
-          Banner Link:
-          <input
-            type="text"
-            name="link"
-            value={formData.link}
-            onChange={handleInputChange}
-          />
-        </label>
+      <div style={formGroupStyle}>
+        <label style={formLabelStyle}>Banner Link:</label>
+        <input
+          type="text"
+          name="link"
+          value={formData.link}
+          onChange={handleInputChange}
+          style={formInputStyle}
+        />
       </div>
-      <button type="submit">ADD Banner</button>
+      <button type="submit" style={formButtonStyle}>
+        ADD Banner
+      </button>
     </form>
   );
 };

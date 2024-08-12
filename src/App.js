@@ -9,6 +9,7 @@ function App() {
   const fetchBannerData = async () => {
     try {
       const result = await axios.get('https://take-backend-2.onrender.com/api/banner');
+      console.log('Banner Data:', result.data); // Log the response
       setBannerData(result.data);
     } catch (error) {
       console.error('Error fetching banner data:', error);
@@ -54,6 +55,7 @@ function App() {
   const mainContentStyle = {
     flex: '1',
     padding: '20px',
+    textAlign: 'center',
   };
 
   const formContainerStyle = {
@@ -63,61 +65,9 @@ function App() {
     height: '100vh',
   };
 
-  const formStyle = {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    maxWidth: '600px',
-    width: '100%',
-  };
-
-  const formGroupStyle = {
-    marginBottom: '15px',
-  };
-
-  const formLabelStyle = {
-    display: 'block',
-    marginBottom: '5px',
-  };
-
-  const formInputStyle = {
-    width: '100%',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  };
-
-  const formButtonStyle = {
-    padding: '10px 20px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  };
-
-  const formButtonHoverStyle = {
-    backgroundColor: '#0056b3',
-  };
-
-  const welcomeSectionStyle = {
-    textAlign: 'center',
-    marginBottom: '40px',
-  };
-
-  const overviewSectionStyle = {
-    marginBottom: '40px',
-  };
-
-  const headingStyle = {
-    fontSize: '2rem',
-    marginBottom: '10px',
-  };
-
-  const paragraphStyle = {
-    fontSize: '1.2rem',
-    lineHeight: '1.5',
+  const headerStyle = {
+    color: '#343a40',
+    margin: '20px 0',
   };
 
   return (
@@ -136,31 +86,18 @@ function App() {
       </nav>
 
       <main style={mainContentStyle}>
-        <section style={welcomeSectionStyle}>
-          <h1 style={headingStyle}>Welcome to the Admin Dashboard</h1>
-          <p style={paragraphStyle}>
-            Manage banners efficiently with our easy-to-use dashboard. You can add, edit, or remove banners that are displayed to your users in real-time.
-          </p>
-        </section>
-
-        <section style={overviewSectionStyle}>
-          <h2 style={headingStyle}>Dashboard Overview</h2>
-          <p style={paragraphStyle}>
-            This dashboard allows you to create dynamic banners with a description, timer, and link. The banners will automatically appear on the main page based on your inputs.
-          </p>
-        </section>
-
-        {bannerData && (
+        {bannerData ? (
           <Banner
             description={bannerData.description}
             timer={bannerData.timer}
             link={bannerData.link}
           />
+        ) : (
+          <p>No banner to display</p>
         )}
 
-        <div style={{ textAlign: 'center' }}>
-          <h2 style={headingStyle}>Manage Banners</h2>
-        </div>
+        <h1 style={headerStyle}>Admin Dashboard</h1>
+
         <div style={formContainerStyle}>
           <AdminDashboard setBannerData={setBannerData} fetchBannerData={fetchBannerData} />
         </div>
