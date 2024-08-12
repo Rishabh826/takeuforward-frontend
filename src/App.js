@@ -8,7 +8,7 @@ function App() {
 
   const fetchBannerData = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/api/banner');
+      const result = await axios.get('https://take-backend.onrender.com/api/banner');
       console.log('Banner Data:', result.data); // Log the response
       setBannerData(result.data);
     } catch (error) {
