@@ -8,7 +8,7 @@ function App() {
 
   const fetchBannerData = async () => {
     try {
-      const result = await axios.get('https://take-backend-3.onrender.com/api/banner');
+      const result = await axios.get('http://localhost:5000/api/banner');
       console.log('Banner Data:', result.data); // Log the response
       setBannerData(result.data);
     } catch (error) {
@@ -24,15 +24,6 @@ function App() {
     backgroundColor: '#343a40',
     padding: '10px 0',
   };
-
-  const containerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: '1200px',
-    margin: '0 auto',
-  };
-
   const navbarBrandStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -52,28 +43,10 @@ function App() {
     fontWeight: 'bold',
   };
 
-  const mainContentStyle = {
-    flex: '1',
-    padding: '20px',
-    textAlign: 'center',
-  };
-
-  const formContainerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-  };
-
-  const headerStyle = {
-    color: '#343a40',
-    margin: '20px 0',
-  };
-
   return (
     <div>
-      <nav style={navbarStyle}>
-        <div style={containerStyle}>
+     <nav style={navbarStyle}>
+        <div>
           <a style={navbarBrandStyle} href="#">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS-VMhRzpkQoBeeIjjRw8mXPwMerTckBzW0FuJ_PJ02lvhVZ6ooI423PrmE5WFWYygN9E&usqp=CAU"
@@ -85,7 +58,7 @@ function App() {
         </div>
       </nav>
 
-      <main style={mainContentStyle}>
+      <main >
         {bannerData ? (
           <Banner
             description={bannerData.description}
@@ -96,9 +69,9 @@ function App() {
           <p>No banner to display</p>
         )}
 
-        <h1 style={headerStyle}>Admin Dashboard</h1>
+        <h1>Admin Dashboard</h1>
 
-        <div style={formContainerStyle}>
+        <div>
           <AdminDashboard setBannerData={setBannerData} fetchBannerData={fetchBannerData} />
         </div>
       </main>
