@@ -8,7 +8,7 @@ function App() {
 
   const fetchBannerData = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/api/banner');
+      const result = await axios.get('https://take-backend-2.onrender.com/api/banner');
       setBannerData(result.data);
     } catch (error) {
       console.error('Error fetching banner data:', error);
@@ -124,6 +124,10 @@ function App() {
             link={bannerData.link}
           />
         )}
+        <div style={{textAlign:'centre'}}>
+          <h1>Admin Dashboard
+          </h1>
+        </div>
         <div style={formContainerStyle}>
           <AdminDashboard setBannerData={setBannerData} fetchBannerData={fetchBannerData} />
         </div>
