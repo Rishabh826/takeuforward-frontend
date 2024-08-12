@@ -20,7 +20,6 @@ const AdminDashboard = ({ setBannerData, fetchBannerData }) => {
     e.preventDefault();
     try {
       const result = await axios.post('https://take-backend.onrender.com/api/banner/add', formData);
-      console.log('Banner added:', result.data);
       setBannerData(result.data); // Update the state with the new banner data
       fetchBannerData(); // Optionally refetch the data to ensure consistency
     } catch (error) {
@@ -28,75 +27,45 @@ const AdminDashboard = ({ setBannerData, fetchBannerData }) => {
     }
   };
 
-  const formStyle = {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    maxWidth: '600px',
-    width: '100%',
-  };
-
-  const formGroupStyle = {
-    marginBottom: '15px',
-  };
-
-  const formLabelStyle = {
-    display: 'block',
-    marginBottom: '5px',
-  };
-
-  const formInputStyle = {
-    width: '100%',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  };
-
-  const formButtonStyle = {
-    padding: '10px 20px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  };
-
   return (
-    <form onSubmit={handleSubmit} style={formStyle}>
-      <div style={formGroupStyle}>
-        <label style={formLabelStyle}>Banner Description:</label>
-        <input
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={handleInputChange}
-          style={formInputStyle}
-        />
+    <form onSubmit={handleSubmit} style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', maxWidth: '600px', width: '100%' }}>
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px' }}>
+          Banner Description:
+          <input
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}
+          />
+        </label>
       </div>
-      <div style={formGroupStyle}>
-        <label style={formLabelStyle}>Banner Timer (seconds):</label>
-        <input
-          type="number"
-          name="timer"
-          value={formData.timer}
-          onChange={handleInputChange}
-          style={formInputStyle}
-        />
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px' }}>
+          Banner Timer (seconds):
+          <input
+            type="number"
+            name="timer"
+            value={formData.timer}
+            onChange={handleInputChange}
+            style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}
+          />
+        </label>
       </div>
-      <div style={formGroupStyle}>
-        <label style={formLabelStyle}>Banner Link:</label>
-        <input
-          type="text"
-          name="link"
-          value={formData.link}
-          onChange={handleInputChange}
-          style={formInputStyle}
-        />
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ display: 'block', marginBottom: '5px' }}>
+          Banner Link:
+          <input
+            type="text"
+            name="link"
+            value={formData.link}
+            onChange={handleInputChange}
+            style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px' }}
+          />
+        </label>
       </div>
-      <button type="submit" style={formButtonStyle}>
-        ADD Banner
-      </button>
+      <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>ADD Banner</button>
     </form>
   );
 };
