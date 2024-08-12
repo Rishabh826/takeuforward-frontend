@@ -101,6 +101,25 @@ function App() {
     backgroundColor: '#0056b3',
   };
 
+  const welcomeSectionStyle = {
+    textAlign: 'center',
+    marginBottom: '40px',
+  };
+
+  const overviewSectionStyle = {
+    marginBottom: '40px',
+  };
+
+  const headingStyle = {
+    fontSize: '2rem',
+    marginBottom: '10px',
+  };
+
+  const paragraphStyle = {
+    fontSize: '1.2rem',
+    lineHeight: '1.5',
+  };
+
   return (
     <div>
       <nav style={navbarStyle}>
@@ -117,6 +136,20 @@ function App() {
       </nav>
 
       <main style={mainContentStyle}>
+        <section style={welcomeSectionStyle}>
+          <h1 style={headingStyle}>Welcome to the Admin Dashboard</h1>
+          <p style={paragraphStyle}>
+            Manage banners efficiently with our easy-to-use dashboard. You can add, edit, or remove banners that are displayed to your users in real-time.
+          </p>
+        </section>
+
+        <section style={overviewSectionStyle}>
+          <h2 style={headingStyle}>Dashboard Overview</h2>
+          <p style={paragraphStyle}>
+            This dashboard allows you to create dynamic banners with a description, timer, and link. The banners will automatically appear on the main page based on your inputs.
+          </p>
+        </section>
+
         {bannerData && (
           <Banner
             description={bannerData.description}
@@ -124,9 +157,9 @@ function App() {
             link={bannerData.link}
           />
         )}
-        <div style={{textAlign:'centre'}}>
-          <h1>Admin Dashboard
-          </h1>
+
+        <div style={{ textAlign: 'center' }}>
+          <h2 style={headingStyle}>Manage Banners</h2>
         </div>
         <div style={formContainerStyle}>
           <AdminDashboard setBannerData={setBannerData} fetchBannerData={fetchBannerData} />
