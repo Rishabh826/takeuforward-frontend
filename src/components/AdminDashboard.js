@@ -19,7 +19,7 @@ const AdminDashboard = ({ setBannerData, fetchBannerData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await axios.post('https://take-backend-2.onrender.com/api/banner/add', formData);
+      const result = await axios.post('https://take-backend-3.onrender.com/api/banner/add', formData);
       console.log('Banner added:', result.data);
       setBannerData(result.data); // Update the state with the new banner data
       fetchBannerData(); // Optionally refetch the data to ensure consistency
